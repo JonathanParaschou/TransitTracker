@@ -18,10 +18,9 @@ const BootstrapDropdown = ({ options, onSelect, defaultVal }) => {
   }, [options]);
 
   return (
-    <div>
+    <div className="dropdowndiv">
       {options.length > 1 ? (
-        <Dropdown onSelect={handleSelect}>
-          <DropdownButton variant="light" size="lg" title={selectedOption.label}>
+          <DropdownButton className='dropdownbutton' variant="light" size="lg" title={selectedOption.label} onSelect={handleSelect}>
             <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
               {options.map((option) => (
                 <DropdownItem key={option.label} eventKey={option.value}>
@@ -30,7 +29,6 @@ const BootstrapDropdown = ({ options, onSelect, defaultVal }) => {
               ))}
             </div>
           </DropdownButton>
-        </Dropdown>
       ) : null}
     </div>
   );

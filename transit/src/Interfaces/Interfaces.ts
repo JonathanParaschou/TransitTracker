@@ -29,6 +29,7 @@ export interface DropState {
 
 export interface DepartureData {
     route: string;
+    arrival: string;
     destination: string;
     departs: string;
 }

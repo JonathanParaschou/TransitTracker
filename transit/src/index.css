@@ -1,13 +1,12 @@
-
-body {
+.containerdrop {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
+  background-color: #fef7ee !important;
   justify-content: center;
   align-items: center;
-  background-color: #fef7ed !important;
 }
 
 .RouteFinder {
@@ -19,40 +18,48 @@ body {
   border-radius: 10px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   width: 600px;
+  margin: 20px;
+  justify-content: center;
 }
 
-/* Typography */
+.navbar {
+  background-color: #1f5fff;
+
+}
+
 h2 {
   font-size: 2em;
-  margin-bottom: 20px;
   color: #ffffff !important;
-}
-
-/* Dropdown Styles */
-.dropdown {
-  margin-bottom: 10px;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  font-family: proxima-nova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
 
 .dropdown-toggle {
-  border: 1px solid #ccc;
   border-radius: 4px;
-  padding: 10px 15px;
   width: 100%;
 }
 
 .dropdown-menu {
   background-color: #fff;
   border-radius: 4px;
-  border: 1px solid #ccc;
   width: 100%;
 }
 
 .dropdownlist {
   width: 100%;
 }
+.dropdowndiv {
+  padding: 10px;
+}
+
+.dropdownbutton {
+  border: 1px solid grey;
+  border-radius: 7px;
+}
 
 /* Modal Styles */
-.modal-content {
+/* .modal-content {
   background-color: #fff;
   border-radius: 5px;
   padding: 20px;
@@ -61,22 +68,72 @@ h2 {
 .modal-title {
   font-weight: bold;
   margin-bottom: 10px;
+} */
+
+/* Modal Header */
+.modal-header {
+  padding: 2px 16px;
+  background-color: #1f5fff;
+  color: white;
 }
 
-.logo {
-  justify-content: flex-start;
-  align-items:flex-start;
-  position: absolute;
-  top: 0px;
-  left: 0px;
+/* Modal Body */
+.modal-body {padding: 2px 16px;}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #1f5fff;
+  color: white;
 }
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
 
 .RouteFinderTitle {
-  background-color: #888888;
+  background-color: #1f5fff;
   width: 80%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-bottom: 13px;
   border-radius: 10px;
+  margin: 20px;
+  border: 1px solid gray;
+}
+
+.homediv {
+  .container {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.full-width {
+  width: 100vw;
+  position: relative;
+  margin-left: -50vw;
+  left: 50%;
+  overflow-x: hidden;
+  top: 0px;
+  position: absolute;
+}
+
+.circle-image {
+  border-radius: 20px;
 }

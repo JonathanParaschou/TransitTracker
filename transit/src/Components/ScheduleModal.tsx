@@ -17,10 +17,11 @@ const ScheduleModal = ({ show, onHide, tripInfo }) => {
             try {
                 const response = await axios.get(`https://svc.metrotransit.org/nextrip/${tripInfo.route}/${tripInfo.direction}/${tripInfo.stop}`);
                 let stopId = response.data.stops[0].stop_id;
+                let pickup = response.data.stops[0].description;
                 let departures = response.data.departures;
                 let departureDataWashed: DepartureData[] = [];
                 departures.forEach(data => {
-                    departureDataWashed.push({ route: data.route_short_name, destination: data.description, departs: data.departure_text });
+                    departureDataWashed.push({ route: data.route_short_name, arrival: pickup, destination: data.description, departs: data.departure_text });
                 });
                 setState((prevState) => ({ ...prevState, stopId: stopId, departureData: departureDataWashed }));
             } catch (error) {
@@ -51,16 +52,18 @@ const ScheduleModal = ({ show, onHide, tripInfo }) => {
                 <thead>
                   <tr>
                     <th>Route</th>
-                    <th>Destination</th>
+                    <th>Pickup Stop</th>
                     <th>Departure</th>
+                    <th>Final Stop</th>
                   </tr>
                 </thead>
                 <tbody>
                   {state.departureData.map((item) => (
                     <tr key={item.route}> {/* Added key prop for proper rendering */}
                       <td>{item.route}</td>
-                      <td>{item.destination}</td>
+                      <td>{item.arrival}</td>
                       <td>{item.departs}</td>
+                      <td>{item.destination}</td>
                     </tr>
                   ))}
                 </tbody>
