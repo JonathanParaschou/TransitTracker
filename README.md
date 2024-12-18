@@ -42,9 +42,6 @@
 
 ### Third Step:
 - Render popup with Stop List when all dropdowns have been selected
-<<<<<<< HEAD
 
 - Mile Stone 3: Got got popup to render withe departure data
 ![image](pictures\Milestone_3.PNG)
-=======
->>>>>>> 2f49f058042c775570d72390644e4bde0c473b11
