@@ -4,15 +4,17 @@ import Dropdown from './Components/DropDown.tsx';
 import axios from 'axios';
 import { RouteOptions, DirectionOptions, StopOptions, AppState } from './Interfaces/Interfaces.ts'
 import BootstrapDropdown from './Components/DropDown.tsx';
+import ScheduleModal from './Components/ScheduleModal.tsx';
+import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  let defaultRouteOptions = [{value: "N/A", label: "Select Route"}];
-  let defaultDirectionOptions = [{value: "N/A", label: "Select Direction"}];
-  let defaultStopOptions = [{value: "N/A", label: "Select Stop"}];
+  const defaultRouteOptions = [{ value: "N/A", label: "Select Route" }];
+  const defaultDirectionOptions = [{ value: "N/A", label: "Select Direction" }];
+  const defaultStopOptions = [{ value: "N/A", label: "Select Stop" }];
   const [state, setState] = useState<AppState>({
     routeOptions: defaultRouteOptions,
-    directionOptions: defaultDirectionOptions ,
+    directionOptions: defaultDirectionOptions,
     stopOptions: defaultStopOptions,
     selectedRoute: null,
     selectedDirection: null,
@@ -20,11 +22,16 @@ function App() {
     error: null,
   });
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   useEffect(() => {
     const fetchRouteOptions = async () => {
       try {
         const response = await axios.get('https://svc.metrotransit.org/nextrip/routes');
-        let responseData: RouteOptions[] = defaultRouteOptions;
+        let responseData: RouteOptions[] = [...defaultRouteOptions];
         response.data.forEach((data) => {
           let obj = {
             label: data.route_label,
@@ -53,7 +60,7 @@ function App() {
           })
           setState((prevState) => ({ ...prevState, directionOptions: responseData, stopOptions: defaultStopOptions }));
         } else {
-          setState((prevState) => ({ ...prevState, directionOptions: [{ value: "N/A", label: "Select Direction" }], stopOptions: [{ value: "N/A", label: "Select Stop" }]}));
+          setState((prevState) => ({ ...prevState, directionOptions: [{ value: "N/A", label: "Select Direction" }], stopOptions: [{ value: "N/A", label: "Select Stop" }] }));
         }
       } catch (error) {
         console.error('Error fetching direction options:', error);
@@ -75,7 +82,7 @@ function App() {
           })
           setState((prevState) => ({ ...prevState, stopOptions: responseData }));
         } else {
-          setState((prevState) => ({ ...prevState, stopOptions: [{ value: "N/A", label: "Select Stop" }]}));
+          setState((prevState) => ({ ...prevState, stopOptions: [{ value: "N/A", label: "Select Stop" }] }));
         }
       } catch (error) {
         console.error('Error fetching stop options:', error);
@@ -121,25 +128,29 @@ function App() {
       ...prevState,
       selectedStop: stop,
     }));
+    handleShow();
   };
 
   return (
     <div className="RouteFinder">
-          <BootstrapDropdown
-            options={state.routeOptions}
-            onSelect={handleRouteChange}
-            defaultVal="Select Route"
-          />
-          <Dropdown
-            options={state.directionOptions}
-            onSelect={handleDirectionChange}
-            defaultVal="Select Direction"
-          />
-          <Dropdown
-            options={state.stopOptions}
-            onSelect={handleStopChange}
-            defaultVal="Select Stop"
-          />
+      <h1>TransitTracker</h1>
+      <BootstrapDropdown
+        options={state.routeOptions}
+        onSelect={handleRouteChange}
+        defaultVal="Select Route"
+      />
+      <Dropdown
+        options={state.directionOptions}
+        onSelect={handleDirectionChange}
+        defaultVal="Select Direction"
+      />
+      <Dropdown
+        options={state.stopOptions}
+        onSelect={handleStopChange}
+        defaultVal="Select Stop"
+      />
+
+      <ScheduleModal show={show} onHide={handleClose} tripInfo={{route: state.selectedRoute, direction: state.selectedDirection, stop: state.selectedStop}} />
     </div>
   );
 }

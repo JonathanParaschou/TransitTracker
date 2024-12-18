@@ -25,4 +25,15 @@ export interface AppState {
 
 export interface DropState {
     label: string | null;
-  }
+}
+
+export interface DepartureData {
+    route: string;
+    destination: string;
+    departs: string;
+}
+
+export interface ModalState {
+    stopId: string | null;
+    departureData: DepartureData[];
+}
