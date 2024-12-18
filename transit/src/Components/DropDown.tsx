@@ -1,29 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Dropdown, DropdownButton, DropdownItem } from 'react-bootstrap';
+import { DropState } from '../Interfaces/Interfaces';
 
-const Dropdown = ({ options, defaultValue }) => {
-  const [selectedOption, setSelectedOption] = useState(defaultValue);
+const BootstrapDropdown = ({ options, onSelect, defaultVal }) => {
+  const [selectedOption, setSelectedOption] = useState<DropState>({
+    label: defaultVal,
+  });
 
-  useEffect(() => {
-    setSelectedOption(defaultValue);
-  }, [defaultValue]);
-
-  const handleChange = (event) => {
-    setSelectedOption(event.target.value);
+  const handleSelect = (eventKey) => {
+    const selectedItem = options.find((option) => option.value == eventKey);
+    setSelectedOption({ label: selectedItem?.label });
+    onSelect(eventKey);
   };
 
+  useEffect(() => {
+    setSelectedOption((prevState) => ({ ...prevState, label: defaultVal }));
+  }, [options]);
+
   return (
-    <select
-      value={selectedOption}
-      onChange={handleChange}
-      className="bg-gray-100 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-    >
-      {options.map((option) => (
-        <option key={option.label} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-    </select>
+    <div>
+      {options.length > 1 ? (
+        <Dropdown onSelect={handleSelect}>
+          <DropdownButton variant="light" size="lg" title={selectedOption.label}>
+            {options.map((option) => (
+              <DropdownItem key={option.label} eventKey={option.value}>
+                {option.label}
+              </DropdownItem>
+            ))}
+          </DropdownButton>
+        </Dropdown>
+      ) : null}
+    </div>
   );
 };
 
-export default Dropdown;
+export default BootstrapDropdown;

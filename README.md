@@ -16,11 +16,26 @@
 
 - Chipping away are required requirements first, starting with a search bar
 
-- Importing Tailwind CSS for web page styling - Just a personal choice
+- Importing React Bootstrap for web page styling - Just a personal choice
 
-- First Steps:
+### First Step:
     - Seeing if I can get a list of Stop options to auto populate on page entry and filter as user types into the input box
     - **Note**: Using GPT to generate stylings for me for first run. Probably not worth it for me to sit on CSS the entire time for the case study. Will add in my own touches towards the end.
 
 - Mile Stone 1: Populated dropdown with the Routes Data:
 ![image](pictures\Milestone_1.PNG)
+
+### Second Step:
+- Render direction and step dropdowns accordingly with correct data from API
+
+- Struggle Point: Handling when to load new option data and resolve back to a default label. For example: If the user selectes a route and then deselects a route, it should handle the options for the routing and direction dropdowns. There is a lot of overlap points, but this needs to be handled correctly. Currently having an issue where I am unable to successfully select a direction option because I wrote it in a way where if the options list changes, it default back.
+    - Solved this issue by moving some functionality to the change handler and strengthening if conditions
+
+- Mile Stone 2: Created all three dropdowns and added conditional rendering for when a previous dropdown is selected. Noticed there was a bug with the metro transit site when you select all options and then change your route.
+
+![image](pictures\Milestone_2a.PNG)
+![image](pictures\Milestone_2b.PNG)
+![image](pictures\Milestone_2c.PNG)
+
+### Third Step:
+- Render popup with Stop List when all dropdowns have been selected
