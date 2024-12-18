@@ -1,12 +1,82 @@
+
 body {
-    display: flex;
-    min-height: 100vh;
-    margin: 0;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  #root {
-    background-color: #f0f0f0;
-    padding: 20px;
-  }
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fef7ed !important;
+}
+
+.RouteFinder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  width: 600px;
+}
+
+/* Typography */
+h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #ffffff !important;
+}
+
+/* Dropdown Styles */
+.dropdown {
+  margin-bottom: 10px;
+}
+
+.dropdown-toggle {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px 15px;
+  width: 100%;
+}
+
+.dropdown-menu {
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.dropdownlist {
+  width: 100%;
+}
+
+/* Modal Styles */
+.modal-content {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.modal-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.logo {
+  justify-content: flex-start;
+  align-items:flex-start;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.RouteFinderTitle {
+  background-color: #888888;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 13px;
+  border-radius: 10px;
+}

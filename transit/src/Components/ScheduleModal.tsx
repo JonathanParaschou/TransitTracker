@@ -32,12 +32,16 @@ const ScheduleModal = ({ show, onHide, tripInfo }) => {
         if (show && tripInfo.stop) {
             fetchStopId(tripInfo);
         }
+
+        return () => {
+          setState((prevState) => ({ ...prevState, departureData: [] }));
+        };
     }, [show, tripInfo.stop]); // Include both show and tripInfo.stop in the dependency array
 
     return (
         <Modal show={show} onHide={onHide} backdrop="static" keyboard={false}>
           <Modal.Header closeButton>
-            <Modal.Title>Stop#: {state.stopId}</Modal.Title>
+            <Modal.Title>STOP#:{state.stopId}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {state.departureData.length === 0 ? (

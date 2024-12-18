@@ -22,11 +22,13 @@ const BootstrapDropdown = ({ options, onSelect, defaultVal }) => {
       {options.length > 1 ? (
         <Dropdown onSelect={handleSelect}>
           <DropdownButton variant="light" size="lg" title={selectedOption.label}>
-            {options.map((option) => (
-              <DropdownItem key={option.label} eventKey={option.value}>
-                {option.label}
-              </DropdownItem>
-            ))}
+            <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
+              {options.map((option) => (
+                <DropdownItem key={option.label} eventKey={option.value}>
+                  {option.label}
+                </DropdownItem>
+              ))}
+            </div>
           </DropdownButton>
         </Dropdown>
       ) : null}

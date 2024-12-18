@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './Home.css';
 import Dropdown from './Components/DropDown.tsx';
 import axios from 'axios';
 import { RouteOptions, DirectionOptions, StopOptions, AppState } from './Interfaces/Interfaces.ts'
@@ -8,7 +8,7 @@ import ScheduleModal from './Components/ScheduleModal.tsx';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+function Home() {
   const defaultRouteOptions = [{ value: "N/A", label: "Select Route" }];
   const defaultDirectionOptions = [{ value: "N/A", label: "Select Direction" }];
   const defaultStopOptions = [{ value: "N/A", label: "Select Stop" }];
@@ -24,7 +24,9 @@ function App() {
 
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false)
+  };
   const handleShow = () => setShow(true);
 
   useEffect(() => {
@@ -132,27 +134,35 @@ function App() {
   };
 
   return (
-    <div className="RouteFinder">
-      <h1>TransitTracker</h1>
-      <BootstrapDropdown
-        options={state.routeOptions}
-        onSelect={handleRouteChange}
-        defaultVal="Select Route"
-      />
-      <Dropdown
-        options={state.directionOptions}
-        onSelect={handleDirectionChange}
-        defaultVal="Select Direction"
-      />
-      <Dropdown
-        options={state.stopOptions}
-        onSelect={handleStopChange}
-        defaultVal="Select Stop"
-      />
-
-      <ScheduleModal show={show} onHide={handleClose} tripInfo={{route: state.selectedRoute, direction: state.selectedDirection, stop: state.selectedStop}} />
+    <div>
+      <div className="logo">
+        <img src="/logo.PNG" width="300px" height="auto" alt="image" />
+      </div>
+      <div className="RouteFinder">
+        <div className="RouteFinderTitle">
+          <h2>DEPARTURE FINDER</h2>
+        </div>
+        <div className="dropdownlist">
+          <BootstrapDropdown
+            options={state.routeOptions}
+            onSelect={handleRouteChange}
+            defaultVal="Select Route"
+          />
+          <BootstrapDropdown
+            options={state.directionOptions}
+            onSelect={handleDirectionChange}
+            defaultVal="Select Direction"
+          />
+          <BootstrapDropdown
+            options={state.stopOptions}
+            onSelect={handleStopChange}
+            defaultVal="Select Stop"
+          />
+        </div>
+        <ScheduleModal show={show} onHide={handleClose} tripInfo={{ route: state.selectedRoute, direction: state.selectedDirection, stop: state.selectedStop }} />
+      </div>
     </div>
   );
 }
 
-export default App;
+export default Home;
