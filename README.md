@@ -19,11 +19,11 @@
 - Importing React Bootstrap for web page styling - Just a personal choice
 
 ### First Step:
-    - Seeing if I can get a list of Stop options to auto populate on page entry and filter as user types into the input box
-    - **Note**: Using GPT to generate stylings for me for first run. Probably not worth it for me to sit on CSS the entire time for the case study. Will add in my own touches towards the end.
+- Seeing if I can get a list of Stop options to auto populate on page entry and filter as user types into the input box
+- **Note**: Using GPT to generate stylings for me for first run. Probably not worth it for me to sit on CSS the entire time for the case study. Will add in my own touches towards the end.
 
 - Mile Stone 1: Populated dropdown with the Routes Data:
-![image](pictures\Milestone_1.PNG)
+![image](./pictures\Milestone_1.PNG)
 
 ### Second Step:
 - Render direction and step dropdowns accordingly with correct data from API
@@ -36,12 +36,15 @@
     
 - Mile Stone 2: Created all three dropdowns and added conditional rendering for when a previous dropdown is selected. Noticed there was a bug with the metro transit site when you select all options and then change your route.
 
-![image](pictures\Milestone_2a.PNG)
-![image](pictures\Milestone_2b.PNG)
-![image](pictures\Milestone_2c.PNG)
+![image](./pictures\Milestone_2a.PNG)
+![image](./pictures\Milestone_2b.PNG)
+![image](./pictures\Milestone_2c.PNG)
 
 ### Third Step:
 - Render popup with Stop List when all dropdowns have been selected
+<<<<<<< HEAD
 
 - Mile Stone 3: Got got popup to render withe departure data
 ![image](pictures\Milestone_3.PNG)
+=======
+>>>>>>> 2f49f058042c775570d72390644e4bde0c473b11
