@@ -19,8 +19,8 @@
 - Importing React Bootstrap for web page styling - Just a personal choice
 
 ### First Step:
-    - Seeing if I can get a list of Stop options to auto populate on page entry and filter as user types into the input box
-    - **Note**: Using GPT to generate stylings for me for first run. Probably not worth it for me to sit on CSS the entire time for the case study. Will add in my own touches towards the end.
+- Seeing if I can get a list of Stop options to auto populate on page entry and filter as user types into the input box
+- **Note**: Using GPT to generate stylings for me for first run. Probably not worth it for me to sit on CSS the entire time for the case study. Will add in my own touches towards the end.
 
 - Mile Stone 1: Populated dropdown with the Routes Data:
 ![image](./pictures\Milestone_1.PNG)
