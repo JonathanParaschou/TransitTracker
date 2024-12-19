@@ -1,31 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './index.css'; 
 import Home from './Home.tsx';
 import reportWebVitals from './reportWebVitals.ts';
 import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-
+import Footer from './Components/Footer.tsx';
+import Container from 'react-bootstrap/Container';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-  <Navbar> 
-    <Container>
-      <Navbar.Brand><img className='circle-image' src="/logo.png" alt="TransitTracker Logo" style={{ maxWidth: '20%', maxHeight: '100%', objectFit: 'contain' }} /></Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" /> 
-    </Container>
-  </Navbar>
-  <div className="containerdrop">
-    <Home />
-  </div>
-</React.StrictMode>
+    <Navbar expand="lg" className="navbar"> 
+      <Container>
+        <Navbar.Brand>
+          <img 
+            className="circle-image" 
+            src="/logo.png" 
+            alt="TransitTracker Logo" 
+          />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="/" className="nav-link">Home</Nav.Link>
+            <Nav.Link href="#about" className="nav-link">About</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+    <div className="containerdrop">
+      <Home />
+    </div>
+    <Footer />
+  </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

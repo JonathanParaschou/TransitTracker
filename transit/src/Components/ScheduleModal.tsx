@@ -42,7 +42,9 @@ const ScheduleModal = ({ show, onHide, tripInfo }) => {
     return (
         <Modal show={show} onHide={onHide} backdrop="static" keyboard={false}>
           <Modal.Header closeButton>
-            <Modal.Title>STOP#:{state.stopId}</Modal.Title>
+            <div className="modal-title-container">
+              <Modal.Title>STOP #{state.stopId}</Modal.Title>
+            </div>
           </Modal.Header>
           <Modal.Body>
             {state.departureData.length === 0 ? (

@@ -28,7 +28,7 @@
 ### Second Step:
 - Render direction and step dropdowns accordingly with correct data from API
 
-- Struggle Point: Handling when to load new option data and resolve back to a default label. For example: If the user selectes a route and then deselects a route, it should handle the options for the routing and direction dropdowns. There is a lot of overlap points, but this needs to be handled correctly. Currently having an issue where I am unable to successfully select a direction option because I wrote it in a way where if the options list changes, it default back.
+- Struggle Point: Handling when to load new option data and resolve back to a default label. For example: If the user selectes a route and then deselects a route, it should handle the options for the routing and direction dropdowns. There is a lot of overlap points, but this needs to be handled elegantly via state management.
     - Solved this issue by moving some functionality to the change handler and strengthening if conditions
 
 - Struggle Point 2: If the async function is called one after another fast enough, there is potential that it loads options two times over
@@ -50,5 +50,13 @@
 ### Fourth Step:
 - Seems that we met the minimum requirements, we are able to see the routes, directions, stops, and pull up a table of all the departures from a specific stop. Now is the CSS portion. This will be in iterative process.
 
-- Milestone 4: Some CSS to spice things up - definitely not the best, but it looks better than before
+- Milestone 4a: Some CSS to spice things up - definitely not the best, but it looks better than before
 ![image](./pictures/Milestone_4.PNG)
+
+### Day 2
+- Milestone 4b: Complete CSS overhaul. Added an image banner, navbar (dummy navbar) and reworked the color schemes of the page. Also added a footer and change the web tabular
+![image](./pictures/Milestone_4b.PNG)
+
+### Fifth Step
+- While I am generally content with the CSS, some minor tweaks could be made to the table popup. Additionally, I wouldd like to look more into browser back and fourth arrow functionality.
+- Debating whether or not I want to change the behavior when the popup also goes back into hide mode... Currently, if the user closes the popup all the previous options are still selected. The only issue with this is that if the user wants to pull the popup up again, they need to reselect the dropdown option. This could be solved by clearing the stop dropdown as the metro site does or introducing a button

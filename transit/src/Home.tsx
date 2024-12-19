@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './Home.css';
 import axios from 'axios';
 import { RouteOptions, DirectionOptions, StopOptions, AppState } from './Interfaces/Interfaces.ts'
 import BootstrapDropdown from './Components/DropDown.tsx';
 import ScheduleModal from './Components/ScheduleModal.tsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FaRoute, FaArrowAltCircleDown, FaMapMarkerAlt } from 'react-icons/fa';
 
 function Home() {
   const defaultRouteOptions = [{ value: "N/A", label: "Select Route" }];
@@ -131,33 +131,54 @@ function Home() {
     handleShow();
   };
 
- return (
-  <div className="homediv">
-    <div className="RouteFinder">
-      <div className="RouteFinderTitle">
-        <h2>DEPARTURE FINDER</h2>
+  return (
+    <div className="homediv">
+      <div className="banner-holder">
+        <div className="banner-overlay">
+          <img className="banner-img" src="/lightrail.png" alt="Subway Banner" />
+          <div className="banner-text">
+            <h1>Welcome to the Transit Tracker</h1>
+            <p>Navigate Your Journey with Ease: The Transit Tracker Way!</p>
+          </div>
+        </div>
       </div>
-      <div className="dropdownlist">
-        <BootstrapDropdown
-          options={state.routeOptions}
-          onSelect={handleRouteChange}
-          defaultVal="Select Route"
-        />
-        <BootstrapDropdown
-          options={state.directionOptions}
-          onSelect={handleDirectionChange}
-          defaultVal="Select Direction"
-        />
-        <BootstrapDropdown
-          options={state.stopOptions}
-          onSelect={handleStopChange}
-          defaultVal="Select Stop"
+      <div className="RouteFinder">
+        <div className="RouteFinderTitle">
+          <h2>Find Your Stop Schedule</h2>
+        </div>
+        <div className="dropdownlist">
+          <BootstrapDropdown
+            options={state.routeOptions}
+            onSelect={handleRouteChange}
+            defaultVal="Select Route"
+            icon={<FaRoute />}
+          />
+          <BootstrapDropdown
+            options={state.directionOptions}
+            onSelect={handleDirectionChange}
+            defaultVal="Select Direction"
+            icon={<FaArrowAltCircleDown />}
+          />
+          <BootstrapDropdown
+            options={state.stopOptions}
+            onSelect={handleStopChange}
+            defaultVal="Select Stop"
+            icon={<FaMapMarkerAlt />}
+          />
+        </div>
+        <ScheduleModal
+          show={show}
+          onHide={handleClose}
+          tripInfo={{
+            route: state.selectedRoute,
+            direction: state.selectedDirection,
+            stop: state.selectedStop,
+          }}
         />
       </div>
-      <ScheduleModal show={show} onHide={handleClose} tripInfo={{ route: state.selectedRoute, direction: state.selectedDirection, stop: state.selectedStop }} />
     </div>
-  </div>
-);
+  );
+
 }
 
 export default Home;
