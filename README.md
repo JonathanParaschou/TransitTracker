@@ -55,7 +55,7 @@
 
 ### Day 2
 - Milestone 4b: Complete CSS overhaul. Added an image banner, navbar (dummy navbar) and reworked the color schemes of the page. Also added a footer and change the web tabular
-![image](./pictures/Milestone_4b.PNG)
+![image](./pictures/Milestone_4b.png)
 
 ### Fifth Step
 - While I am generally content with the CSS, some minor tweaks could be made to the table popup. Additionally, I wouldd like to look more into browser back and fourth arrow functionality.
