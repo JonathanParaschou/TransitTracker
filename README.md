@@ -55,8 +55,8 @@
 
 ### Day 2
 - Milestone 4b: Complete CSS overhaul. Added an image banner, navbar (dummy navbar) and reworked the color schemes of the page. Also added a footer and change the web tabular
-![image](./pictures/Milestone_4b.PNG)
+![image](./pictures/Milestone_4b.png)
 
 ### Fifth Step
-- While I am generally content with the CSS, some minor tweaks could be made to the table popup. Additionally, I wouldd like to look more into browser back and fourth arrow functionality.
+- While I am generally content with the CSS, some minor tweaks could be made to the table popup. Additionally, I would like to look more into browser back and fourth arrow functionality.
 - Debating whether or not I want to change the behavior when the popup also goes back into hide mode... Currently, if the user closes the popup all the previous options are still selected. The only issue with this is that if the user wants to pull the popup up again, they need to reselect the dropdown option. This could be solved by clearing the stop dropdown as the metro site does or introducing a button
