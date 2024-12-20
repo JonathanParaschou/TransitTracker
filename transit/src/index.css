@@ -3,10 +3,7 @@
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  /* display: flex; */
   background-color: #fef7ee !important;
-  /* justify-content: center;
-  align-items: center; */
 }
 
 .RouteFinder {
@@ -17,9 +14,20 @@
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  width: 600px;
+  width: 40%;
   margin: 20px;
   justify-content: center;
+  margin-bottom: 20%;
+}
+
+.RouteFinderTitle {
+  background-color: #4197b5;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 20px;
+  border: 1px solid gray;
 }
 
 .navbar {
@@ -82,17 +90,14 @@ h2 {
   color: white;
 }
 
-/* Modal Body */
 .modal-body {padding: 2px 16px;}
 
-/* Modal Footer */
 .modal-footer {
   padding: 2px 16px;
   background-color: #1f5fff;
   color: white;
 }
 
-/* Modal Content */
 .modal-content {
   position: relative;
   background-color: #fefefe;
@@ -105,21 +110,9 @@ h2 {
   animation-duration: 0.4s
 }
 
-/* Add Animation */
 @keyframes animatetop {
   from {top: -300px; opacity: 0}
   to {top: 0; opacity: 1}
-}
-
-
-.RouteFinderTitle {
-  background-color: #4197b5;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  border-radius: 10px;
-  margin: 20px;
-  border: 1px solid gray;
 }
 
 .homediv {
@@ -257,7 +250,6 @@ h2 {
   align-items: center;
   margin-left: 20px;
 }
-
 
 .custom-dropdown-button {
   display: flex;

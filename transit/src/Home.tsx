@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { RouteOptions, DirectionOptions, StopOptions, AppState } from './Interfaces/Interfaces.ts'
+import { RouteOptions, DirectionOptions, StopOptions, AppState } from './Interfaces/Interfaces.ts';
 import BootstrapDropdown from './Components/DropDown.tsx';
 import ScheduleModal from './Components/ScheduleModal.tsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,25 +21,53 @@ function Home() {
     error: null,
   });
 
+
+  // Handling Routing from Modal Popup to Main Page
+  const navigate = useNavigate();
+  const location = useLocation();
   const [show, setShow] = useState(false);
 
-  const handleClose = () => {
-    setShow(false)
+  const parseQueryParams = (queryString) => {
+    const params = new URLSearchParams(queryString);
+    return {
+      route: params.get('route'),
+      direction: params.get('direction'),
+      stop: params.get('stop'),
+    };
   };
-  const handleShow = () => setShow(true);
 
+  useEffect(() => {
+    const { route, direction, stop } = parseQueryParams(location.search);
+
+    if (route && direction && stop) {
+      setState((prevState) => ({
+        ...prevState,
+        selectedRoute: route,
+        selectedDirection: direction,
+        selectedStop: stop,
+      }));
+      setShow(true);
+    }
+  }, [location.search]);
+
+  const handleClose = () => {
+    setShow(false);
+    navigate(location.pathname);
+  };
+
+
+  // Used to fetch information and query states from the metro next API
   useEffect(() => {
     const fetchRouteOptions = async () => {
       try {
         const response = await axios.get('https://svc.metrotransit.org/nextrip/routes');
-        let responseData: RouteOptions[] = [...defaultRouteOptions];
+        const responseData: RouteOptions[] = [...defaultRouteOptions];
         response.data.forEach((data) => {
-          let obj = {
+          responseData.push({
             label: data.route_label,
-            value: data.route_id
-          }
-          responseData.push(obj);
-        })
+            value: data.route_id,
+          });
+        });
         setState((prevState) => ({ ...prevState, routeOptions: responseData }));
       } catch (error) {
         console.error('Error fetching route options:', error);
@@ -48,58 +77,67 @@ function Home() {
 
     const fetchDirectionOptions = async (routeId) => {
       try {
-        if (routeId != "N/A") {
+        if (routeId !== "N/A") {
           const response = await axios.get(`https://svc.metrotransit.org/nextrip/directions/${routeId}`);
-          let responseData: DirectionOptions[] = defaultDirectionOptions;
+          const responseData: DirectionOptions[] = [...defaultDirectionOptions];
           response.data.forEach((data) => {
-            let obj = {
+            responseData.push({
               label: data.direction_name,
-              value: data.direction_id
-            }
-            responseData.push(obj);
-          })
-          setState((prevState) => ({ ...prevState, directionOptions: responseData, stopOptions: defaultStopOptions }));
+              value: data.direction_id,
+            });
+          });
+          setState((prevState) => ({
+            ...prevState,
+            directionOptions: responseData,
+            stopOptions: defaultStopOptions,
+          }));
         } else {
-          setState((prevState) => ({ ...prevState, directionOptions: [{ value: "N/A", label: "Select Direction" }], stopOptions: [{ value: "N/A", label: "Select Stop" }] }));
+          setState((prevState) => ({
+            ...prevState,
+            directionOptions: defaultDirectionOptions,
+            stopOptions: defaultStopOptions,
+          }));
         }
       } catch (error) {
         console.error('Error fetching direction options:', error);
         setState((prevState) => ({ ...prevState, error: 'Failed to load direction options' }));
       }
-    }
+    };
 
     const fetchStopOptions = async (routeId, directionId) => {
       try {
-        if (routeId != "N/A" && directionId != "N/A") {
+        if (routeId !== "N/A" && directionId !== "N/A") {
           const response = await axios.get(`https://svc.metrotransit.org/nextrip/stops/${routeId}/${directionId}`);
-          let responseData: StopOptions[] = defaultStopOptions;
+          const responseData: StopOptions[] = [...defaultStopOptions];
           response.data.forEach((data) => {
-            let obj = {
+            responseData.push({
               label: data.description,
-              value: data.place_code
-            }
-            responseData.push(obj);
-          })
+              value: data.place_code,
+            });
+          });
           setState((prevState) => ({ ...prevState, stopOptions: responseData }));
         } else {
-          setState((prevState) => ({ ...prevState, stopOptions: [{ value: "N/A", label: "Select Stop" }] }));
+          setState((prevState) => ({
+            ...prevState,
+            stopOptions: defaultStopOptions,
+          }));
         }
       } catch (error) {
         console.error('Error fetching stop options:', error);
         setState((prevState) => ({ ...prevState, error: 'Failed to load stop options' }));
       }
-    }
+    };
 
-    if (state.routeOptions.length == 1) {
+    if (state.routeOptions.length === 1) {
       fetchRouteOptions();
     }
 
-    if (state.selectedRoute && state.directionOptions.length == 1) {
+    if (state.selectedRoute && state.directionOptions.length === 1) {
       fetchDirectionOptions(state.selectedRoute);
     }
 
-    if (state.selectedRoute && state.selectedDirection && state.stopOptions.length == 1) {
-      fetchStopOptions(state.selectedRoute, state.selectedDirection)
+    if (state.selectedRoute && state.selectedDirection && state.stopOptions.length === 1) {
+      fetchStopOptions(state.selectedRoute, state.selectedDirection);
     }
   }, [state.selectedRoute, state.selectedDirection, state.selectedStop]);
 
@@ -110,7 +148,7 @@ function Home() {
       directionOptions: defaultDirectionOptions,
       stopOptions: defaultStopOptions,
       selectedDirection: null,
-      selectedStop: null
+      selectedStop: null,
     }));
   };
 
@@ -119,16 +157,17 @@ function Home() {
       ...prevState,
       selectedDirection: direction,
       stopOptions: defaultStopOptions,
-      selectedStop: null
+      selectedStop: null,
     }));
   };
 
   const handleStopChange = (stop) => {
+    const { selectedRoute, selectedDirection } = state;
     setState((prevState) => ({
       ...prevState,
       selectedStop: stop,
     }));
-    handleShow();
+    navigate(`?route=${selectedRoute}&direction=${selectedDirection}&stop=${stop}`); // Update URL
   };
 
   return (
@@ -150,7 +189,7 @@ function Home() {
           <BootstrapDropdown
             options={state.routeOptions}
             onSelect={handleRouteChange}
-            defaultVal="Select Route"
+            defaultVal={state.selectedRoute ? state.selectedRoute : "Select Route"}
             icon={<FaRoute />}
           />
           <BootstrapDropdown
@@ -178,7 +217,6 @@ function Home() {
       </div>
     </div>
   );
-
 }
 
 export default Home;
