@@ -189,19 +189,19 @@ function Home() {
           <BootstrapDropdown
             options={state.routeOptions}
             onSelect={handleRouteChange}
-            defaultVal={state.selectedRoute ? state.selectedRoute : "Select Route"}
+            defaultVal = {state.routeOptions && state.selectedRoute ? state.routeOptions.find((route) => route.value === state.selectedRoute)?.label : "Select Route"}
             icon={<FaRoute />}
           />
           <BootstrapDropdown
             options={state.directionOptions}
             onSelect={handleDirectionChange}
-            defaultVal="Select Direction"
+            defaultVal={state.directionOptions && state.selectedDirection ? state.directionOptions.find((dir) => dir.value == state.selectedDirection)?.label : "Select Direction"}
             icon={<FaArrowAltCircleDown />}
           />
           <BootstrapDropdown
             options={state.stopOptions}
             onSelect={handleStopChange}
-            defaultVal="Select Stop"
+            defaultVal= {state.stopOptions && state.selectedStop ? state.stopOptions.find((stop) => stop.value === state.selectedStop)?.label : "Select Stop"}
             icon={<FaMapMarkerAlt />}
           />
         </div>
