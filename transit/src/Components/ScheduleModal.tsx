@@ -11,7 +11,6 @@ const ScheduleModal = ({ show, onHide, tripInfo }) => {
         departureData: []
     });
 
-    // Update useEffect to run only when show changes and tripInfo.stop has a value
     useEffect(() => {
         const fetchStopId = async (tripInfo) => {
             try {
@@ -29,7 +28,6 @@ const ScheduleModal = ({ show, onHide, tripInfo }) => {
             }
         };
 
-        // Only call fetchStopId if show is true and tripInfo.stop has a value
         if (show && tripInfo.stop) {
             fetchStopId(tripInfo);
         }
@@ -37,7 +35,7 @@ const ScheduleModal = ({ show, onHide, tripInfo }) => {
         return () => {
           setState((prevState) => ({ ...prevState, departureData: [] }));
         };
-    }, [show, tripInfo.stop]); // Include both show and tripInfo.stop in the dependency array
+    }, [show, tripInfo.stop]);
 
     return (
         <Modal show={show} onHide={onHide} backdrop="static" keyboard={false}>

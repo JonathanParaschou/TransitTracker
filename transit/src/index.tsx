@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css'; 
-import Home from './Home.tsx';
-import reportWebVitals from './reportWebVitals.ts';
+import Home from './Home';
+// import reportWebVitals from './reportWebVitals';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import Footer from './Components/Footer.tsx';
+import Footer from './Components/Footer';
 import Container from 'react-bootstrap/Container';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -44,4 +44,4 @@ root.render(
   </React.StrictMode>
 );
 
-reportWebVitals();
+// reportWebVitals();

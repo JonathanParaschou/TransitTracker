@@ -101,10 +101,10 @@ This section will provide comprehensive instructions to setup and run the web ap
 - Observe application on `localhost:3000`
 
 ## Testing
-
+- To run testing, use `npm run test` or `npm test` in the transit directory
 - Live User Testing: I asked a volunteer to try and use the code to see how they navigate the application
 - Regression Testing: During development, I tried to interact with the application in a variety of formats to test the overall usage of the application
-- Unit Testing: TBD
+- Unit Testing: Used Jest for a few of the minor components. Was unable to successfully create unit tests with the home page as I was unable to figure out an issue with the react-router-dom node module.
 
 ## Assumptions
 - The "Show My Bus feature is excluded from requirements". If I were to implement this, I would look into the Google Map API.

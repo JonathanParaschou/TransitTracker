@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { RouteOptions, DirectionOptions, StopOptions, AppState } from './Interfaces/Interfaces.ts';
-import BootstrapDropdown from './Components/DropDown.tsx';
-import ScheduleModal from './Components/ScheduleModal.tsx';
+import { RouteOptions, DirectionOptions, StopOptions, AppState } from './Interfaces/Interfaces';
+import DropDown from './Components/DropDown';
+import ScheduleModal from './Components/ScheduleModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaRoute, FaArrowAltCircleDown, FaMapMarkerAlt } from 'react-icons/fa';
 
@@ -200,19 +200,19 @@ function Home() {
           <h2>Find Your Stop Schedule</h2>
         </div>
         <div className="dropdownlist">
-          <BootstrapDropdown
+          <DropDown
             options={state.routeOptions}
             onSelect={handleRouteChange}
             defaultVal = {state.routeOptions && state.selectedRoute ? state.routeOptions.find((route) => route.value === state.selectedRoute)?.label : "Select Route"}
             icon={<FaRoute />}
           />
-          <BootstrapDropdown
+          <DropDown
             options={state.directionOptions}
             onSelect={handleDirectionChange}
             defaultVal={state.directionOptions && state.selectedDirection ? state.directionOptions.find((dir) => dir.value == state.selectedDirection)?.label : "Select Direction"}
             icon={<FaArrowAltCircleDown />}
           />
-          <BootstrapDropdown
+          <DropDown
             options={state.stopOptions}
             onSelect={handleStopChange}
             defaultVal= {state.stopOptions && state.selectedStop ? state.stopOptions.find((stop) => stop.value === state.selectedStop)?.label : "Select Stop"}

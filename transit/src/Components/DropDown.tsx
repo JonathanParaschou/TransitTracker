@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { DropdownButton, DropdownItem } from 'react-bootstrap';
 import { DropState } from '../Interfaces/Interfaces';
 
-const BootstrapDropdown = ({ options, onSelect, defaultVal, icon }) => {
+const DropDown = ({ options, onSelect, defaultVal, icon }) => {
   const [selectedOption, setSelectedOption] = useState<DropState>({
     label: defaultVal,
   });
@@ -74,4 +74,4 @@ const BootstrapDropdown = ({ options, onSelect, defaultVal, icon }) => {
   );
 };
 
-export default BootstrapDropdown;
+export default DropDown;
