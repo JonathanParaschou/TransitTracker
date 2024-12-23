@@ -39,6 +39,20 @@ function Home() {
   useEffect(() => {
     const { route, direction, stop } = parseQueryParams(location.search);
 
+    if (!location.search) {
+      setState({
+        routeOptions: defaultRouteOptions,
+        directionOptions: defaultDirectionOptions,
+        stopOptions: defaultStopOptions,
+        selectedRoute: null,
+        selectedDirection: null,
+        selectedStop: null,
+        error: null,
+      });
+      setShow(false);
+      return;
+    }
+
     if (route && direction && stop) {
       setState((prevState) => ({
         ...prevState,

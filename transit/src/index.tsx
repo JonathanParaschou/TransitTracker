@@ -17,22 +17,22 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Navbar expand="lg" className="navbar"> 
-        <Container>
-          <Navbar.Brand>
-            <img 
-              className="circle-image" 
-              src="/logo.png" 
-              alt="TransitTracker Logo" 
-            />
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/" className="nav-link">Home</Nav.Link>
-              <Nav.Link href="#about" className="nav-link">About</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
+      <Container>
+        <Navbar.Brand>
+          <img 
+            className="circle-image" 
+            src="/logo.png" 
+            alt="TransitTracker Logo" 
+          />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+          <Nav className="navthing">
+            <Nav.Link href="/" className="nav-link">About</Nav.Link>
+            <Nav.Link href="/" className="nav-link">Contact</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
       </Navbar>
       <div className="containerdrop">
         <Routes>

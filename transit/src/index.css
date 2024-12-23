@@ -18,16 +18,17 @@
   margin: 20px;
   justify-content: center;
   margin-bottom: 20%;
+  margin-top: 3%;
 }
 
 .RouteFinderTitle {
-  background-color: #4197b5;
+  /* background-color: #4197b5; */
   width: 80%;
   display: flex;
   justify-content: center;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   margin: 20px;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
 }
 
 .navbar {
@@ -36,7 +37,7 @@
 
 h2 {
   font-size: 2em;
-  color: #ffffff !important;
+  color: #4e4d4d !important;
   margin-top: 0.5rem !important;
   margin-bottom: 0.5rem !important;
   font-family: proxima-nova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
@@ -268,15 +269,13 @@ h2 {
 }
 
 .modal-title-container {
-  background-color: gray;
-  border-radius: 8px;
+  /* background-color: gray;
+  border-radius: 8px; */
 }
 
 .modal-title {
   margin: 5px !important;
 }
-
-/* index.css or footer.css */
 
 .footer {
   background-color: #f8f9fa;
